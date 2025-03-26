@@ -1,0 +1,16 @@
+{
+  "local": {
+    "username": "postgres",
+    "password": "localPassword",
+    "database": "karlo_local",
+    "host": null,
+    "dialect": "postgres"
+  },
+  "qa": {
+    "username": "postgres",
+    "password": null,
+    "database": "karlo_qa",
+    "host": null,
+    "dialect": "postgres"
+  }
+}
