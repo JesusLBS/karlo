@@ -1,0 +1,335 @@
+{
+	"info": {
+		"_postman_id": "b713c54e-5d5d-428f-a98e-15d852f30cc1",
+		"name": "karol",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19932658",
+		"_collection_link": "https://red-zodiac-670806.postman.co/workspace/Jesus~e4c9be33-01be-4197-95b5-4bd1b448528f/collection/19932658-b713c54e-5d5d-428f-a98e-15d852f30cc1?action=share&source=collection_link&creator=19932658"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "12345",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/karol/api/v1/admin/user/:limit/:page/:sort/:direction/:withTrashed/:search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"karol",
+								"api",
+								"v1",
+								"admin",
+								"user",
+								":limit",
+								":page",
+								":sort",
+								":direction",
+								":withTrashed",
+								":search"
+							],
+							"variable": [
+								{
+									"key": "limit",
+									"value": "null",
+									"description": "this value is a integer"
+								},
+								{
+									"key": "page",
+									"value": "null",
+									"description": "this value is a integer"
+								},
+								{
+									"key": "sort",
+									"value": "null",
+									"description": "this value is a string"
+								},
+								{
+									"key": "direction",
+									"value": "null",
+									"description": "this value is a string ASC,DESC"
+								},
+								{
+									"key": "withTrashed",
+									"value": "null",
+									"description": "this value is a boolean 1 o 0"
+								},
+								{
+									"key": "search",
+									"value": "null",
+									"description": "this value is a string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Generar una cadena aleatoria corta",
+									"const password = Math.random().toString(36).substring(2, 12);",
+									"const uid = Math.random().toString(36).substring(2, 8);",
+									"",
+									"// Generar un nombre aleatorio",
+									"const names = [\"John\", \"Jane\", \"Michael\", \"Laura\", \"Carlos\", \"Maria\", \"Jose\", \"Ana\", \"Luis\", \"Isabel\"];",
+									"const name = names[Math.floor(Math.random() * names.length)];",
+									"",
+									"",
+									"// Generar un nombre aleatorio",
+									"const roles = [\"Cliente\",\"Negocio\"];",
+									"const roleId = roles[Math.floor(Math.random() * roles.length)];",
+									"",
+									"// Generar un email único y más corto",
+									"const email = `user_${uid}@example.com`;",
+									"",
+									"// Guardar el uid y el email en variables de entorno",
+									"",
+									"pm.environment.set(\"name\", name);",
+									"pm.environment.set(\"email\", email);",
+									"pm.environment.set(\"password\", password);",
+									"pm.environment.set(\"rol\", roleId);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "12345",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{name}}\",\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"rol\": \"{{rol}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/karol/api/v1/admin/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"karol",
+								"api",
+								"v1",
+								"admin",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Generar una cadena aleatoria corta",
+									"const password = Math.random().toString(36).substring(2, 12);",
+									"const uid = Math.random().toString(36).substring(2, 8);",
+									"",
+									"// Generar un nombre aleatorio",
+									"const names = [\"John\", \"Jane\", \"Michael\", \"Laura\", \"Carlos\", \"Maria\", \"Jose\", \"Ana\", \"Luis\", \"Isabel\"];",
+									"const name = names[Math.floor(Math.random() * names.length)];",
+									"",
+									"",
+									"// Generar un nombre aleatorio",
+									"const roles = [\"Cliente\",\"Negocio\"];",
+									"const roleId = roles[Math.floor(Math.random() * roles.length)];",
+									"",
+									"// Generar un email único y más corto",
+									"const email = `user_${uid}@example.com`;",
+									"",
+									"// Guardar el uid y el email en variables de entorno",
+									"",
+									"pm.environment.set(\"name\", name);",
+									"pm.environment.set(\"email\", email);",
+									"pm.environment.set(\"password\", password);",
+									"pm.environment.set(\"rol\", roleId);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "12345",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 2,\n    \"name\": \"{{name}}\",\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"rol\": \"{{rol}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/karol/api/v1/admin/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"karol",
+								"api",
+								"v1",
+								"admin",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "12345",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 2,\n    \"name\": \"{{name}}\",\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"rol\": \"{{rol}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/karol/api/v1/admin/user/:dataId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"karol",
+								"api",
+								"v1",
+								"admin",
+								"user",
+								":dataId"
+							],
+							"variable": [
+								{
+									"key": "dataId",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deactivate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "12345",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dataId\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/karol/api/v1/admin/user/deactivate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"karol",
+								"api",
+								"v1",
+								"admin",
+								"user",
+								"deactivate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
