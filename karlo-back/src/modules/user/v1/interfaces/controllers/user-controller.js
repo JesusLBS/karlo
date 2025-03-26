@@ -58,9 +58,9 @@ class UserController {
 
     update = async (req, res) => {
         try {
-            const { roleId: catRoleId, ...rest } = req.body;
+            const { rol, ...rest } = req.body;
             const body = {
-                catRoleId,
+                rol,
                 ...rest,
             };
 
