@@ -8,7 +8,7 @@ module.exports = {
   password: config ? config?.password : database.dbPassword,
   database: config ? config?.database : database.dbName,
   host: config ? config?.host : database.dbHost,
-  dialect: database.dbDialect,
+  dialect: config ? config.dialect : database.dbDialect,
   define: {
     timestamps: true,
     underscored: false,
