@@ -38,12 +38,13 @@ if (action === 'create') {
   const files = {
     'domain/entities': `${singularModuleName}-entity.js`,
     'domain/repositories': `${singularModuleName}-repository.js`,
-    'domain/dependents-cases': `${singularModuleName}-use-case.js`,
+    ['domain/' + singularModuleName + '-cases']: `${singularModuleName}-use-case.js`,
     'infraestructure/data': `${singularModuleName}-repository-impl.js`,
     'infraestructure/routes': `${singularModuleName}-router.js`,
     'interfaces/controllers': `${singularModuleName}-controller.js`,
     'index.js': '',
   };
+
 
   for (const [folder, file] of Object.entries(files)) {
     if (file) {

@@ -30,6 +30,16 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Business',
+    tableName: 'Businesses',
+      scopes: {
+        raw: {
+          raw: true,
+          nest: true,
+        },
+        desc: {
+          order: [['createdAt', 'desc']],
+        },
+      },
   });
   return Business;
 };
