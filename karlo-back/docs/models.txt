@@ -1,0 +1,5 @@
+# Main models
+npx sequelize-cli model:generate --name Business --attributes name:string
+npx sequelize-cli model:generate --name User --attributes name:string,email:string,password:string,rol:string,itIsVerified:boolean
+npx sequelize-cli model:generate --name Product --attributes businessId:integer,name:string,amount:string,price:string,inStock:boolean
+npx sequelize-cli model:generate --name PurchaseOrder --attributes businessId:integer,userId:integer,status:string,total:decimal,subtotal:decimal,iva:string,products:jsonb
