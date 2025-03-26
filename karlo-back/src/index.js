@@ -14,8 +14,8 @@ app.get("/", (req, res) => res.send("Hello World"));
 
 app.use("/", apiKeyMiddleware);
 
-//const routerModule = require("./modules/routes/routes");
-//routerModule(app);
+const routerModule = require("./modules/routes/routes");
+routerModule(app);
 
 app.use("*", notFound);
 

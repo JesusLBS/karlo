@@ -1,7 +1,7 @@
 const config = require("../../config/config");
 const ResponseHelper = require("../../helpers/response/responseHelper");
 const JwtHelper = require("../../helpers/security/jwtHelper");
-const UserRepositoryImpl = require("../../modules/auth/v1/infraestructure/data/UserRepositoryImpl");
+const UserRepositoryImpl = require("../../modules/user/v1/infraestructure/data/user-repository-impl");
 const response = new ResponseHelper();
 
 const getToken = (req) => {

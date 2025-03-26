@@ -22,7 +22,7 @@ if (action === 'create') {
   const dirs = [
     path.join(versionDir, 'domain', 'entities'),
     path.join(versionDir, 'domain', 'repositories'),
-    path.join(versionDir, 'domain', 'dependents-cases'),
+    path.join(versionDir, 'domain', `${singularModuleName}-cases`),
     path.join(versionDir, 'infraestructure', 'data'),
     path.join(versionDir, 'infraestructure', 'routes'),
     path.join(versionDir, 'interfaces', 'controllers'),
