@@ -1,0 +1,15 @@
+import { Root } from "../../../interfaces/auth/auth.interface";
+import httpRequestService from "../../../shared/services/api/httpRequestService";
+
+export default class AuthService {
+    private url: string;
+    private resource: string = 'auth/';
+
+    constructor() {
+        this.url = `${import.meta.env.VITE_APP_API_URL}${this.resource}`;
+    }
+    async login(_credentials: any) {
+        const scope = `${this.url}login`;
+        return httpRequestService.post<Root>(scope, { ..._credentials }, {}, 'axios');
+    }
+};
