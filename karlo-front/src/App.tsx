@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import AuthRoutes from './modules/auth/routes/AuthRoutes';
 import PublicRoute from './shared/components/PublicRoute';
 import { ToastContainer } from 'react-toastify';
+import ProtectedRoute from './shared/components/ProtectedRoute';
+import DashboardRoutes from './modules/dashboard/routes/DashboardRoutes';
 
 interface AppProps {
   toggleTheme: () => void;
@@ -16,6 +18,9 @@ const App: React.FC<AppProps> = ({ toggleTheme, darkMode }) => {
       <Routes>
         <Route element={<PublicRoute />}>
           <Route path="/auth/*" element={<AuthRoutes toggleTheme={toggleTheme} darkMode={darkMode} />} />
+        </Route>
+        <Route element={<ProtectedRoute />}>
+          <Route path="/dashboard/*" element={<DashboardRoutes toggleTheme={toggleTheme} darkMode={darkMode} />} />
         </Route>
         <Route path="*" element={<Navigate to="/auth/login" />} />
       </Routes>
