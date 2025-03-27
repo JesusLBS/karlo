@@ -29,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {
     sequelize,
+    paranoid: true,
     modelName: 'Business',
     tableName: 'Businesses',
       scopes: {
