@@ -2,6 +2,8 @@
 const {
   Model
 } = require('sequelize');
+const authService = require("../../services/internal/auth.service");
+
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -78,17 +80,21 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     paranoid: true,
-      modelName: 'User',
-      tableName: 'Users',
-      scopes: {
-        raw: {
-          raw: true,
-          nest: true,
-        },
-        desc: {
-          order: [['createdAt', 'desc']],
-        },
+    modelName: 'User',
+    tableName: 'Users',
+    scopes: {
+      raw: {
+        raw: true,
+        nest: true,
       },
+      desc: {
+        order: [['createdAt', 'desc']],
+      },
+    },
+  });
+  User.beforeCreate(async (user, options) => {
+    const hashedPassword = await authService.hashPassword(user.password);
+    user.password = hashedPassword;
   });
   return User;
 };
