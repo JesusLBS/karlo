@@ -4,5 +4,5 @@ const {
 const businessRouter = require("./v1/index");
 
 module.exports = (router) => {
-    router.use("/admin/business", businessRouter);
+    router.use("/admin/business", validJWTMiddleware, businessRouter);
 };

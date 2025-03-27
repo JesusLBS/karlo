@@ -1,7 +1,7 @@
 const config = require("../../config/config");
 const ResponseHelper = require("../../helpers/response/responseHelper");
 const JwtHelper = require("../../helpers/security/jwtHelper");
-const UserRepositoryImpl = require("../../modules/user/v1/infraestructure/data/user-repository-impl");
+const UserRepositoryImpl = require("../../modules/auth/v1/infraestructure/data/UserRepositoryImpl");
 const response = new ResponseHelper();
 
 const getToken = (req) => {
@@ -20,14 +20,13 @@ const validateToken = async (req, res, next, validateFn) => {
     const data = await new JwtHelper(bearerToken, jwtKey, cryptokey)[
       validateFn
     ](apiKey);
-
-    const user = await new UserRepositoryImpl().findUserByUid(data.user.uid);
+    const user = await new UserRepositoryImpl().findUserByEmail(data.user.email);
     if (!user) {
       throw { statusCode: 401, message: "Invalid token" };
     }
-    const { uid, role } = user;
+    const { id, role } = user;
 
-    req.auth = { uid, role };
+    req.auth = { id, role };
 
     next();
   } catch (error) {

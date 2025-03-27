@@ -4,5 +4,5 @@ const {
 const userRouter = require("./v1/index");
 
 module.exports = (router) => {
-    router.use("/admin/user", userRouter);
+    router.use("/admin/user", validJWTMiddleware, userRouter);
 };

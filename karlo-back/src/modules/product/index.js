@@ -4,5 +4,5 @@ const {
 const productRouter = require("./v1/index");
 
 module.exports = (router) => {
-    router.use("/product", productRouter);
+    router.use("/product", validJWTMiddleware, productRouter);
 };
