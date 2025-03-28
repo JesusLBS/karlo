@@ -16,8 +16,10 @@ const httpRequestService = {
     async request<T>({ url, method = 'GET', data, headers, client = 'axios' }: RequestOptions): Promise<T> {
         const updatedHeaders = {
             'x-api-key': apiKey,
+            'Authorization': `Bearer ${localStorage.getItem('x-token')}`,
             ...headers
         };
+
         if (client === 'axios') {
             return this.axiosRequest<T>({ url, method, data, headers: updatedHeaders });
         } else {

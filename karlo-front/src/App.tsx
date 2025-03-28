@@ -5,6 +5,7 @@ import PublicRoute from './shared/components/PublicRoute';
 import { ToastContainer } from 'react-toastify';
 import ProtectedRoute from './shared/components/ProtectedRoute';
 import DashboardRoutes from './modules/dashboard/routes/DashboardRoutes';
+import PrivateRoutes from './modules/private/routes/PrivateRoutes';
 
 interface AppProps {
   toggleTheme: () => void;
@@ -22,6 +23,7 @@ const App: React.FC<AppProps> = ({ toggleTheme, darkMode }) => {
         <Route element={<ProtectedRoute />}>
           <Route path="/dashboard/*" element={<DashboardRoutes toggleTheme={toggleTheme} darkMode={darkMode} />} />
         </Route>
+        <Route path="/private/*" element={<PrivateRoutes toggleTheme={toggleTheme} darkMode={darkMode} />} />
         <Route path="*" element={<Navigate to="/auth/login" />} />
       </Routes>
     </Router>
