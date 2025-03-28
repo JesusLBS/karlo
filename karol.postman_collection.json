@@ -1,18 +1,100 @@
 {
 	"info": {
 		"_postman_id": "b713c54e-5d5d-428f-a98e-15d852f30cc1",
-		"name": "karol",
+		"name": "karlo",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "19932658",
 		"_collection_link": "https://red-zodiac-670806.postman.co/workspace/Jesus~e4c9be33-01be-4197-95b5-4bd1b448528f/collection/19932658-b713c54e-5d5d-428f-a98e-15d852f30cc1?action=share&source=collection_link&creator=19932658"
 	},
 	"item": [
 		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json()",
+									"if (!responseJson.ok) console.error(responseJson);",
+									"console.log(responseJson.message);",
+									"pm.environment.set('x-token', responseJson.data.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{x-api-key}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "x-api-key",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"12345\",\n    \"email\": \"user_24aur5@example.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/karlo/api/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"karlo",
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "users",
 			"item": [
 				{
 					"name": "index",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{x-token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -22,14 +104,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/karol/api/v1/admin/user/:limit/:page/:sort/:direction/:withTrashed/:search",
+							"raw": "http://localhost:3000/karlo/api/v1/admin/user/:limit/:page/:sort/:direction/:withTrashed/:search",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"karol",
+								"karlo",
 								"api",
 								"v1",
 								"admin",
@@ -44,7 +126,7 @@
 							"variable": [
 								{
 									"key": "limit",
-									"value": "null",
+									"value": "2",
 									"description": "this value is a integer"
 								},
 								{
@@ -114,6 +196,16 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{x-token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -124,7 +216,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"{{name}}\",\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"rol\": \"{{rol}}\"\n}",
+							"raw": "{\n    \"name\": \"jesus\",\n    \"email\": \"al221710026\",\n    \"password\": \"12345678\",\n    \"rol\": \"{{rol}}\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -204,14 +296,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/karol/api/v1/admin/user",
+							"raw": "http://localhost:3000/karlool/api/v1/admin/user",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"karol",
+								"karlool",
 								"api",
 								"v1",
 								"admin",
@@ -254,14 +346,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/karol/api/v1/admin/user/:dataId",
+							"raw": "http://localhost:3000/karlo/api/v1/admin/user/:dataId",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"karol",
+								"karlo",
 								"api",
 								"v1",
 								"admin",
@@ -311,19 +403,966 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/karol/api/v1/admin/user/deactivate",
+							"raw": "http://localhost:3000/karlo/api/v1/admin/user/deactivate",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"karol",
+								"karlo",
 								"api",
 								"v1",
 								"admin",
 								"user",
 								"deactivate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "business",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{x-token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "12345",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/karlo/api/v1/admin/business/:limit/:page/:sort/:direction/:withTrashed/:search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"karlo",
+								"api",
+								"v1",
+								"admin",
+								"business",
+								":limit",
+								":page",
+								":sort",
+								":direction",
+								":withTrashed",
+								":search"
+							],
+							"variable": [
+								{
+									"key": "limit",
+									"value": "null",
+									"description": "this value is a integer"
+								},
+								{
+									"key": "page",
+									"value": "null",
+									"description": "this value is a integer"
+								},
+								{
+									"key": "sort",
+									"value": "null",
+									"description": "this value is a string"
+								},
+								{
+									"key": "direction",
+									"value": "null",
+									"description": "this value is a string ASC,DESC"
+								},
+								{
+									"key": "withTrashed",
+									"value": "null",
+									"description": "this value is a boolean 1 o 0"
+								},
+								{
+									"key": "search",
+									"value": "null",
+									"description": "this value is a string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"",
+									"// Generar un nombre aleatorio",
+									"const names = [\"John\", \"Jane\", \"Michael\", \"Laura\", \"Carlos\", \"Maria\", \"Jose\", \"Ana\", \"Luis\", \"Isabel\"];",
+									"const name = names[Math.floor(Math.random() * names.length)];",
+									"",
+									"// Guardar el uid y el email en variables de entorno",
+									"",
+									"pm.environment.set(\"name\", name);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "12345",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{name}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/karlo/api/v1/admin/business",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"karlo",
+								"api",
+								"v1",
+								"admin",
+								"business"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"// Generar un nombre aleatorio",
+									"const names = [\"John\", \"Jane\", \"Michael\", \"Laura\", \"Carlos\", \"Maria\", \"Jose\", \"Ana\", \"Luis\", \"Isabel\"];",
+									"const name = names[Math.floor(Math.random() * names.length)];",
+									"",
+									"// Guardar el uid y el email en variables de entorno",
+									"",
+									"pm.environment.set(\"name\", name);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "12345",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"name\": \"{{name}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/karlo/api/v1/admin/business",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"karlo",
+								"api",
+								"v1",
+								"admin",
+								"business"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "12345",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 2,\n    \"name\": \"{{name}}\",\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"rol\": \"{{rol}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/karlo/api/v1/admin/business/:dataId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"karlo",
+								"api",
+								"v1",
+								"admin",
+								"business",
+								":dataId"
+							],
+							"variable": [
+								{
+									"key": "dataId",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deactivate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "12345",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dataId\": 4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/karlo/api/v1/admin/business/deactivate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"karlo",
+								"api",
+								"v1",
+								"admin",
+								"business",
+								"deactivate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "product",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{x-token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "12345",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/karlo/api/v1/product/:limit/:page/:sort/:direction/:withTrashed/:search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"karlo",
+								"api",
+								"v1",
+								"product",
+								":limit",
+								":page",
+								":sort",
+								":direction",
+								":withTrashed",
+								":search"
+							],
+							"variable": [
+								{
+									"key": "limit",
+									"value": "null",
+									"description": "this value is a integer"
+								},
+								{
+									"key": "page",
+									"value": "null",
+									"description": "this value is a integer"
+								},
+								{
+									"key": "sort",
+									"value": "null",
+									"description": "this value is a string"
+								},
+								{
+									"key": "direction",
+									"value": "null",
+									"description": "this value is a string ASC,DESC"
+								},
+								{
+									"key": "withTrashed",
+									"value": "null",
+									"description": "this value is a boolean 1 o 0"
+								},
+								{
+									"key": "search",
+									"value": "null",
+									"description": "this value is a string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Generar una cadena aleatoria corta",
+									"const price = Math.floor(Math.random()*(100));",
+									"const amount = Math.floor(Math.random()*(100));",
+									"",
+									"// Generar un nombre aleatorio",
+									"const names = [\"John\", \"Jane\", \"Michael\", \"Laura\", \"Carlos\", \"Maria\", \"Jose\", \"Ana\", \"Luis\", \"Isabel\"];",
+									"const name = names[Math.floor(Math.random() * names.length)];",
+									"",
+									"// Guardar el uid y el email en variables de entorno",
+									"",
+									"pm.environment.set(\"name\", name);",
+									"pm.environment.set(\"amount\", amount);",
+									"pm.environment.set(\"price\", price);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{x-token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "12345",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"businessId\": 2,\n    \"name\": \"{{name}}\",\n    \"amount\": \"{{amount}}\",\n    \"price\": \"{{price}}\",\n    \"inStock\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/karlo/api/v1/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"karlo",
+								"api",
+								"v1",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Generar una cadena aleatoria corta",
+									"const price = Math.floor(Math.random()*(100));",
+									"const amount = Math.floor(Math.random()*(100));",
+									"",
+									"// Generar un nombre aleatorio",
+									"const names = [\"John\", \"Jane\", \"Michael\", \"Laura\", \"Carlos\", \"Maria\", \"Jose\", \"Ana\", \"Luis\", \"Isabel\"];",
+									"const name = names[Math.floor(Math.random() * names.length)];",
+									"",
+									"// Guardar el uid y el email en variables de entorno",
+									"",
+									"pm.environment.set(\"name\", name);",
+									"pm.environment.set(\"amount\", amount);",
+									"pm.environment.set(\"price\", price);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{x-token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "12345",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":2,\n    \"businessId\": 2,\n    \"name\": \"{{name}}\",\n    \"amount\": \"{{amount}}\",\n    \"price\": \"{{price}}\",\n    \"inStock\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/karlo/api/v1/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"karlo",
+								"api",
+								"v1",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{x-token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "12345",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 2,\n    \"name\": \"{{name}}\",\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"rol\": \"{{rol}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/karlo/api/v1/product/:dataId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"karlo",
+								"api",
+								"v1",
+								"product",
+								":dataId"
+							],
+							"variable": [
+								{
+									"key": "dataId",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deactivate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{x-token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "12345",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dataId\": 4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/karlo/api/v1/product/deactivate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"karlo",
+								"api",
+								"v1",
+								"product",
+								"deactivate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "purchase-order",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{x-token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "12345",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/karlo/api/v1/purchaseorder/:limit/:page/:sort/:direction/:withTrashed/:search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"karlo",
+								"api",
+								"v1",
+								"purchaseorder",
+								":limit",
+								":page",
+								":sort",
+								":direction",
+								":withTrashed",
+								":search"
+							],
+							"variable": [
+								{
+									"key": "limit",
+									"value": "null",
+									"description": "this value is a integer"
+								},
+								{
+									"key": "page",
+									"value": "null",
+									"description": "this value is a integer"
+								},
+								{
+									"key": "sort",
+									"value": "null",
+									"description": "this value is a string"
+								},
+								{
+									"key": "direction",
+									"value": "null",
+									"description": "this value is a string ASC,DESC"
+								},
+								{
+									"key": "withTrashed",
+									"value": "null",
+									"description": "this value is a boolean 1 o 0"
+								},
+								{
+									"key": "search",
+									"value": "null",
+									"description": "this value is a string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Generar una cadena aleatoria corta",
+									"const total = Math.floor(Math.random()*(100));",
+									"const subtotal = Math.floor(Math.random()*(100));",
+									"",
+									"// Generar un nombre aleatorio",
+									"const names = [\"John\", \"Jane\", \"Michael\", \"Laura\", \"Carlos\", \"Maria\", \"Jose\", \"Ana\", \"Luis\", \"Isabel\"];",
+									"const name = names[Math.floor(Math.random() * names.length)];",
+									"",
+									"// Guardar el uid y el email en variables de entorno",
+									"",
+									"pm.environment.set(\"total\", total);",
+									"pm.environment.set(\"subtotal\", subtotal);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{x-token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "12345",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"businessId\": 2,\n    \"status\": \"vendido\",\n    \"total\": \"{{total}}\",\n    \"subtotal\": \"{{subtotal}}\",\n    \"products\": [\n        \"1\",\n        \"2\",\n        \"3\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/karlo/api/v1/purchaseorder",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"karlo",
+								"api",
+								"v1",
+								"purchaseorder"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Generar una cadena aleatoria corta",
+									"const total = Math.floor(Math.random()*(100));",
+									"const subtotal = Math.floor(Math.random()*(100));",
+									"",
+									"// Generar un nombre aleatorio",
+									"const names = [\"John\", \"Jane\", \"Michael\", \"Laura\", \"Carlos\", \"Maria\", \"Jose\", \"Ana\", \"Luis\", \"Isabel\"];",
+									"const name = names[Math.floor(Math.random() * names.length)];",
+									"",
+									"// Guardar el uid y el email en variables de entorno",
+									"",
+									"pm.environment.set(\"total\", total);",
+									"pm.environment.set(\"subtotal\", subtotal);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{x-token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "12345",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"businessId\": 2,\n    \"status\": \"vendido\",\n    \"total\": \"{{total}}\",\n    \"subtotal\": \"{{subtotal}}\",\n    \"products\": [\n        \"1\",\n        \"2\",\n        \"3\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/karlo/api/v1/purchaseorder",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"karlo",
+								"api",
+								"v1",
+								"purchaseorder"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{x-token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "12345",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 2,\n    \"name\": \"{{name}}\",\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"rol\": \"{{rol}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/karlo/api/v1/purchaseorder/:dataId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"karlo",
+								"api",
+								"v1",
+								"purchaseorder",
+								":dataId"
+							],
+							"variable": [
+								{
+									"key": "dataId",
+									"value": "1"
+								}
 							]
 						}
 					},
